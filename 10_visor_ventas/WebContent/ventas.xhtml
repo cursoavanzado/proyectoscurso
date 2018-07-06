@@ -23,20 +23,20 @@
 		
 	<br/><br/>
 	<h:panelGroup id="panel">
-		<h:dataTable rendered="#{!empty ventasBean.listaVentas}" id="tabla" border="1" var="v" value="#{ventasBean.listaVentas}">
-			<h:column>
-				<f:facet name="header">Titulo</f:facet>
+		<p:dataTable rendered="#{!empty ventasBean.listaVentas}" id="tabla" border="1" var="v" value="#{ventasBean.listaVentas}">
+			<p:column headerText="Título">
+				
 				<h:outputText value="#{v.libro.titulo}"/>
-			</h:column>
-			<h:column>
-				<f:facet name="header">Fecha</f:facet>
+			</p:column>
+			<p:column headerText="Fecha">
+				
 				<h:outputText value="#{v.fecha}"><f:convertDateTime pattern="dd/MM/YY"/> </h:outputText>
-			</h:column>
-			<h:column>
-				<f:facet name="header">Nombre</f:facet>
+			</p:column>
+			<p:column headerText="Nombre">
+				
 				<h:outputText value="#{v.cliente.usuario}"/>
-			</h:column>
-		</h:dataTable>
+			</p:column>
+		</p:dataTable>
 	</h:panelGroup>
 	
 
