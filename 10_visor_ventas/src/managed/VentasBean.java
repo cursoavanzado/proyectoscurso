@@ -41,7 +41,11 @@ public class VentasBean {
 	
 	public void recuperarVentas() {
 		DaoVentas dventas=LibreriaFactory.obtenerDaoVentas();
-		listaVentas=dventas.recuperarVentas(fInicio, fFin);
+		if(fInicio!=null&&fFin!=null) {
+			listaVentas=dventas.recuperarVentas(fInicio, fFin);
+		}else {
+			listaVentas=dventas.recuperarVentas();
+		}
 	}
 		
 	

@@ -54,6 +54,38 @@ public class DaoVentasImpl implements DaoVentas  {
 		}
 		return ventas;
 	}
+	public List<Venta> recuperarVentas() {
+		String sql="select ventas.*,clientes.*,libros.* from ventas,clientes,libros ";
+		sql+="where ventas.idCliente=clientes.idCliente and ";
+		sql+="ventas.idLibro=libros.isbn ";
+		
+		List<Venta> ventas=new ArrayList<>();
+		try(Connection con=Datos.obtenerConexion();){
+			PreparedStatement ps=con.prepareStatement(sql);		
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				Cliente al=new Cliente(rs.getInt("idCliente"),rs.getString("clientes.usuario"),
+						rs.getString("clientes.password"),
+						rs.getString("clientes.email"),
+						
+						rs.getInt("clientes.telefono")
+						);
+				Libro cs=new Libro(rs.getInt("libros.isbn"), 
+						rs.getString("libros.titulo"),
+						rs.getString("libros.autor"),
+						rs.getInt("libros.idTema"),
+						rs.getInt("libros.paginas"),
+						rs.getDouble("libros.precio"));
+				Venta mt=new Venta(rs.getInt("ventas.idVEnta"),rs.getDate("ventas.fecha"),cs,al);
+				ventas.add(mt);
+			}
+			
+		}
+		catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		return ventas;
+	}
 
    
 }

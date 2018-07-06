@@ -8,5 +8,6 @@ import beans.Venta;
 public interface DaoVentas {
 
 	List<Venta> recuperarVentas(Date f1, Date f2);
+	List<Venta> recuperarVentas();
 
 }
