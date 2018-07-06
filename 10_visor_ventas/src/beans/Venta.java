@@ -67,4 +67,10 @@ public class Venta implements Serializable {
 		this.cliente = cliente;
 	}
 
+	@Override
+	public String toString() {		
+		return "libro="+libro;
+	}
+	
+
 }
